@@ -1,0 +1,14 @@
+{
+  "version": "0.3.0",
+  "last_review": "2026-09-16T13:30:00+02:00",
+  "last_update": null,
+  "tree_import": null,
+  "tree_source": {
+    "name": "Arbolado en parques y zonas verdes de Madrid (detalle)",
+    "publisher": "Ayuntamiento de Madrid · Datos Abiertos",
+    "dataset": "300761-0-arbolado-especies",
+    "resource": "300761-8-arbolado-especies",
+    "dataset_updated": "2026-07-27",
+    "coverage_until": "2026-07-07"
+  }
+}

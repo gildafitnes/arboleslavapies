@@ -1,0 +1,26 @@
+ÁRBOLES LAVAPIÉS — PATCH v0.3
+================================
+
+IMPORTANTE: este ZIP NO contiene trees.geojson, users.json, events.json ni
+places.geojson. Está hecho así para no pisar los 2.330 árboles ni los datos
+que ya tienes en tu proyecto.
+
+1. Descomprime este ZIP.
+2. Copia su contenido SOBRE la carpeta de tu proyecto actual
+   lavapies-riega-v0.2.1 / arboleslavapies y acepta REEMPLAZAR archivos.
+3. No borres docs/data/trees.geojson.
+4. Ejecuta ACTUALIZAR_ARBOLES.bat una vez. Además de refrescar los árboles,
+   dejará registrada la hora real de actualización en docs/data/meta.json.
+5. Sube a GitHub los archivos modificados.
+
+GitHub Pages sigue siendo: main -> /docs.
+
+CORREO
+------
+Deja projectEmail vacío por ahora si todavía no has decidido el correo.
+Cuando lo tengas, edita docs/config.js:
+
+  projectEmail: "direccion@ejemplo.org",
+
+Puede ser Gmail, Proton u otro proveedor. La lectura automática nocturna del
+buzón se configurará después según el proveedor elegido.

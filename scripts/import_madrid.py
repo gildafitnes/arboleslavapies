@@ -1,4 +1,5 @@
 import argparse, json, time
+from datetime import datetime, timezone
 from pathlib import Path
 import requests
 from pyproj import Transformer
@@ -41,4 +42,22 @@ def main():
     fc={'type':'FeatureCollection','meta':{'source':'Ayuntamiento de Madrid','resource':RESOURCE,'barrio':args.barrio.upper(),'updated_dataset':'2026-07-27'},'features':[feature(r) for r in rows]}
     out=Path(args.out); out.parent.mkdir(parents=True,exist_ok=True); out.write_text(json.dumps(fc,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
     print(f'Escritos {len(rows)} árboles en {out}')
+    meta_path=out.parent/'meta.json'
+    try:
+        meta=json.loads(meta_path.read_text(encoding='utf-8')) if meta_path.exists() else {}
+    except Exception:
+        meta={}
+    meta.setdefault('version','0.3.0')
+    meta['tree_import']=datetime.now(timezone.utc).isoformat()
+    meta['last_update']=meta['tree_import']
+    meta['tree_count']=len(rows)
+    meta['tree_source']={
+        'name':'Arbolado en parques y zonas verdes de Madrid (detalle)',
+        'publisher':'Ayuntamiento de Madrid · Datos Abiertos',
+        'dataset':'300761-0-arbolado-especies',
+        'resource':RESOURCE,
+        'dataset_updated':'2026-07-27',
+        'coverage_until':'2026-07-07'
+    }
+    meta_path.write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
 if __name__=='__main__': main()
