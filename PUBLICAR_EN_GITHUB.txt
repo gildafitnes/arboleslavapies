@@ -1,0 +1,15 @@
+LAVAPIÉS RIEGA — PUBLICAR EN GITHUB
+
+1. Crea un repositorio nuevo en GitHub.
+2. Sube TODO el contenido de esta carpeta.
+3. En el repositorio: Settings > Pages.
+4. Build and deployment: Deploy from a branch.
+5. Branch: main.
+6. Folder: /docs.
+7. Save.
+
+La URL aparecerá en esa misma pantalla.
+
+Antes de publicarlo de verdad:
+- ejecuta ACTUALIZAR_ARBOLES.bat para cargar Embajadores;
+- escribe el email del proyecto en docs/config.js.

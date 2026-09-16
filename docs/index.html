@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Lavapiés Riega</title>
+  <meta name="description" content="Mapa vecinal abierto para cuidar y documentar el arbolado de Lavapiés." />
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">Lavapiés Riega</a>
+    <nav class="topnav">
+      <button id="nearBtn" class="text-btn">Cerca de mí</button>
+      <button id="profileBtn" class="text-btn">Identidad</button>
+      <button id="aboutBtn" class="text-btn">Qué es</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="map-shell">
+      <div class="searchbar">
+        <input id="searchInput" autocomplete="street-address" placeholder="Buscar calle, número o árbol…" />
+        <button id="searchBtn" aria-label="Buscar">Buscar</button>
+      </div>
+      <div id="map"></div>
+      <div class="map-actions">
+        <button id="addPlaceBtn" class="primary">+ Añadir lugar</button>
+        <button id="needsBtn">Necesitan agua</button>
+      </div>
+      <div id="status" class="status hidden"></div>
+    </section>
+
+    <aside id="drawer" class="drawer" aria-live="polite">
+      <button id="drawerClose" class="drawer-close" aria-label="Cerrar">×</button>
+      <div id="drawerContent"></div>
+    </aside>
+  </main>
+
+  <dialog id="identityDialog" class="dialog">
+    <form method="dialog" id="identityForm">
+      <button class="dialog-close" value="cancel" aria-label="Cerrar">×</button>
+      <h2>Identidad vecinal</h2>
+      <div id="identityCurrent" class="hidden"></div>
+      <div id="identityCreate">
+        <p class="muted">No necesitas email ni datos personales. El alias debe ser único.</p>
+        <label>Alias
+          <input id="aliasInput" maxlength="28" pattern="[A-Za-zÀ-ÿ0-9._-]{3,28}" placeholder="Luisa27" />
+        </label>
+        <button id="createIdentityBtn" type="button" class="primary full">Crear identidad</button>
+        <hr />
+        <h3>Ya tengo código</h3>
+        <label>Alias
+          <input id="loginAlias" maxlength="28" placeholder="Luisa27" />
+        </label>
+        <label>Código secreto
+          <input id="loginCode" autocomplete="off" placeholder="XXXX-XXXX-XXXX-XXXX" />
+        </label>
+        <button id="loginBtn" type="button" class="full">Entrar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="secretDialog" class="dialog important">
+    <div>
+      <h2>Guarda tu código</h2>
+      <p>Haz una captura de pantalla o cópialo. Es tu única llave para recuperar esta identidad en otro navegador.</p>
+      <div class="secret-card">
+        <strong id="secretAlias"></strong>
+        <code id="secretCode"></code>
+      </div>
+      <p class="muted">Normalmente quedará guardado en este navegador. Si lo pierdes, no pasa nada grave: podrás crear otra identidad, pero esta no se podrá recuperar automáticamente.</p>
+      <button id="copySecretBtn" class="primary full">Copiar código</button>
+      <button id="secretDoneBtn" class="full">Ya lo he guardado</button>
+    </div>
+  </dialog>
+
+  <dialog id="addDialog" class="dialog">
+    <form method="dialog">
+      <button class="dialog-close" value="cancel" aria-label="Cerrar">×</button>
+      <h2>Añadir lugar</h2>
+      <p class="muted">Primero coloca el marcador en el mapa. Las nuevas ubicaciones quedan pendientes de revisión.</p>
+      <label>Tipo
+        <select id="placeType">
+          <option value="tree">Árbol no registrado</option>
+          <option value="new_tree">Plantación reciente</option>
+          <option value="empty_tree_pit">Alcorque vacío</option>
+          <option value="water">Punto de agua</option>
+          <option value="green_area">Zona verde</option>
+          <option value="issue">Incidencia</option>
+          <option value="other">Otro</option>
+        </select>
+      </label>
+      <label>Nota
+        <textarea id="placeNote" rows="4" placeholder="Describe brevemente qué hay aquí…"></textarea>
+      </label>
+      <div id="placeCoords" class="coords">Sin ubicación todavía</div>
+      <button id="startPinBtn" type="button" class="primary full">Elegir punto en el mapa</button>
+      <button id="preparePlaceBtn" type="button" class="full" disabled>Preparar solicitud</button>
+    </form>
+  </dialog>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="config.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
